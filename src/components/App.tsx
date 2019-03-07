@@ -1,21 +1,20 @@
-import React from "react";
+import React, { FunctionComponent, useState } from "react";
 
-import "../styles/index.css";
+const App: FunctionComponent = () => {
+  const [num, setNum] = useState(0);
 
-export interface IAppProps {}
-
-export interface IAppState {
-  readonly Vehicle: IVehicle;
-}
-
-class App extends React.PureComponent<IAppProps, IAppState> {
-  render() {
-    return (
-      <div>
-        <h1>Hello World!</h1>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <p>{num}</p>
+      <button
+        onClick={() => {
+          setNum(num + 1);
+        }}
+      >
+        +
+      </button>
+    </div>
+  );
+};
 
 export default App;
