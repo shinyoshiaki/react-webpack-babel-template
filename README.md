@@ -1,2 +1,2 @@
 # react-typescript-boilerplate
-A basic react typescript boilerplate setup with webpack and babel. 
+webpack + react + typescript + babel + storybook
