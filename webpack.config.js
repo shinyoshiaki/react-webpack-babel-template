@@ -8,10 +8,20 @@ module.exports = {
     filename: "bundle.js"
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: [".ts", ".tsx", ".js", ".json"]
   },
   module: {
     rules: [
+      {
+        test: /\.worker\.ts$/,
+        use: [
+          {
+            loader: "worker-loader",
+            options: { inline: true, name: "[name].js" }
+          },
+          "ts-loader"
+        ]
+      },
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
