@@ -5,7 +5,8 @@ module.exports = {
   entry: ["@babel/polyfill", "./src/index"],
   output: {
     path: path.join(__dirname, "/docs"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    globalObject: "self"
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"]
@@ -19,7 +20,7 @@ module.exports = {
             loader: "worker-loader",
             options: { inline: true, name: "[name].js" }
           },
-          "ts-loader"
+          "babel-loader"
         ]
       },
       {
