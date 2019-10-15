@@ -19,7 +19,12 @@ const App: FC = () => {
     };
   }, []);
 
-  return <div>{msg}</div>;
+  return (
+    <div>
+      <p>{msg}</p>
+      <button>button</button>
+    </div>
+  );
 };
 
 export default App;

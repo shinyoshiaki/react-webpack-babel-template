@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 
 const dist = __dirname + "/build";
 
@@ -40,8 +41,19 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      template:
+        process.env.NODE_ENV === "production"
+          ? "./public/index.prod.html"
+          : "./public/index.html",
       favicon: "./public/favicon.ico"
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      globDirectory: dist,
+      globPatterns: ["*.{html,js,css}", "images/*.{png,gif,webp,svg,jpg,jpeg}"],
+      swDest: dist + "/sw.js"
     })
-  ]
+  ],
+  devServer: {
+    disableHostCheck: true
+  }
 };
