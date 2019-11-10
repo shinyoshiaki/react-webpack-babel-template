@@ -4,6 +4,7 @@ const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const dist = __dirname + "/build";
 
 module.exports = {
+  devtool: "source-map",
   entry: ["@babel/polyfill", "./src/index"],
   output: {
     path: dist,
