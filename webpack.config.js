@@ -38,7 +38,7 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
       },
-      { test: /\.(jpe?g|png|gif|ico)$/i, loader: "file?name=[name].[ext]" }
+      { test: /\.(jpe?g|png|gif|ico|svg)$/i, use: [{ loader: "file-loader" }] }
     ]
   },
   plugins: [
