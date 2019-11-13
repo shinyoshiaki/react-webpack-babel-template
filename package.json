@@ -4,8 +4,9 @@
   "scripts": {
     "bundle": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open --hot",
-    "build": "npm run type && webpack --mode production",
+    "start": "webpack-dev-server --mode development --open --hot --host 0.0.0.0",
+    "build": "npm run type && webpack --mode production && npm run assets",
+    "assets": "mv assets/* build/",
     "type": "tsc  --project ./tsconfig.json",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
