@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
+const ImportHttpWebpackPlugin = require("import-http/webpack");
 
 const dist = __dirname + "/build";
 
@@ -52,9 +53,11 @@ module.exports = {
       globDirectory: dist,
       globPatterns: ["*.{html,js,css}", "images/*.{png,gif,webp,svg,jpg,jpeg}"],
       swDest: dist + "/sw.js"
-    })
+    }),
+    new ImportHttpWebpackPlugin()
   ],
   devServer: {
-    disableHostCheck: true
+    disableHostCheck: true,
+    contentBase: __dirname + "/assets"
   }
 };
