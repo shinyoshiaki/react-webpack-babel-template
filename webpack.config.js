@@ -18,6 +18,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(ts|js)x?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
         test: /\.worker\.ts$/,
         use: [
           {
@@ -28,17 +35,22 @@ module.exports = {
         ]
       },
       {
-        test: /\.(ts|js)x?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        test: /\.comlink\.ts$/,
+        use: [
+          {
+            loader: "comlink-loader"
+          },
+          "babel-loader"
+        ]
       },
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
       },
-      { test: /\.(jpe?g|png|gif|ico|svg)$/i, use: [{ loader: "file-loader" }] }
+      {
+        test: /\.(jpe?g|png|gif|ico|svg)$/i,
+        use: [{ loader: "file-loader" }]
+      }
     ]
   },
   plugins: [
@@ -50,14 +62,16 @@ module.exports = {
       favicon: "./public/favicon.ico"
     }),
     new WorkboxWebpackPlugin.GenerateSW({
-      globDirectory: dist,
-      globPatterns: ["*.{html,js,css}", "images/*.{png,gif,webp,svg,jpg,jpeg}"],
       swDest: dist + "/sw.js"
     }),
     new ImportHttpWebpackPlugin()
   ],
   devServer: {
     disableHostCheck: true,
-    contentBase: __dirname + "/assets"
+    contentBase: __dirname + "/assets",
+    historyApiFallback: true
+  },
+  performance: {
+    hints: false
   }
 };

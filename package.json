@@ -15,7 +15,8 @@
   "homepage": ".",
   "dependencies": {
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "sha1": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -31,9 +32,11 @@
     "@storybook/react": "^5.0.0",
     "@types/react": "^16.9.6",
     "@types/react-dom": "^16.9.2",
+    "@types/sha1": "^1.1.2",
     "@types/storybook__addon-actions": "^3.4.1",
     "@types/storybook__react": "^4.0.0",
     "babel-loader": "^8.0.5",
+    "comlink-loader": "^1.1.0",
     "css-loader": "^2.1.0",
     "exports-loader": "^0.7.0",
     "file-loader": "^4.2.0",
