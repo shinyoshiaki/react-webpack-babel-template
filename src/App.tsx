@@ -11,7 +11,7 @@ const App: FC = () => {
   useEffect(() => {
     const worker = workerRef.current;
 
-    worker.onmessage = e => {
+    worker.onmessage = (e: any) => {
       setMsg(e.data);
     };
 
@@ -24,11 +24,11 @@ const App: FC = () => {
 
   useEffect(() => {
     const promise = async () => {
-      const promise: Promise<ComlinkClass> = new ComlinkClass() as any;
-      const inst = await promise;
-      await inst.setSeed("what");
-      const hash = await inst.getHash("a");
-      console.log(hash);
+      const obj: ComlinkClass = (await new ComlinkClass()) as any;
+      console.log({ obj });
+      await obj.setSeed("what");
+      const hash = await obj.getHash("a");
+      console.log({ hash });
     };
     promise();
   }, []);

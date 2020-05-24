@@ -11,10 +11,10 @@ module.exports = {
     path: dist,
     filename: "bundle.js",
     publicPath: "/",
-    globalObject: "self"
+    globalObject: "self",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json"],
   },
   module: {
     rules: [
@@ -22,8 +22,8 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.(ts|tsx)$/,
@@ -31,12 +31,12 @@ module.exports = {
         use: [
           {
             options: {
-              eslintPath: require.resolve("eslint")
+              eslintPath: require.resolve("eslint"),
             },
-            loader: require.resolve("eslint-loader")
-          }
+            loader: require.resolve("eslint-loader"),
+          },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
 
       {
@@ -44,29 +44,32 @@ module.exports = {
         use: [
           {
             loader: "worker-loader",
-            options: { inline: true, name: "[name].js" }
+            options: { inline: true, name: "[name].js" },
           },
-          "babel-loader"
-        ]
+          "babel-loader",
+        ],
       },
       {
         test: /\.comlink\.ts$/,
         use: [
           {
-            loader: "comlink-loader"
+            loader: "comlink-loader",
+            options: {
+              singleton: true,
+            },
           },
-          "babel-loader"
-        ]
+          "babel-loader",
+        ],
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(jpe?g|png|gif|ico|svg)$/i,
-        use: [{ loader: "file-loader" }]
-      }
-    ]
+        use: [{ loader: "file-loader" }],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -74,19 +77,19 @@ module.exports = {
         process.env.NODE_ENV === "production"
           ? "./public/index.prod.html"
           : "./public/index.html",
-      favicon: "./public/favicon.ico"
+      favicon: "./public/favicon.ico",
     }),
     new WorkboxWebpackPlugin.GenerateSW({
-      swDest: dist + "/sw.js"
+      swDest: dist + "/sw.js",
     }),
-    new ImportHttpWebpackPlugin()
+    new ImportHttpWebpackPlugin(),
   ],
   devServer: {
     disableHostCheck: true,
     contentBase: __dirname + "/assets",
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   performance: {
-    hints: false
-  }
+    hints: false,
+  },
 };
