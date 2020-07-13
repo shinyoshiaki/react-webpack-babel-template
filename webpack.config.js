@@ -88,6 +88,7 @@ module.exports = {
     disableHostCheck: true,
     contentBase: __dirname + "/assets",
     historyApiFallback: true,
+    publicPath: "/",
   },
   performance: {
     hints: false,
