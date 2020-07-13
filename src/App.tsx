@@ -36,7 +36,7 @@ const App: FC = () => {
   return (
     <div>
       <p>{msg}</p>
-      <button>button</button>
+      <button onClick={() => setMsg("clicked")}>button</button>
     </div>
   );
 };
